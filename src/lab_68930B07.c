@@ -12,7 +12,32 @@ Re-mould it nearer to the Heart's Desire!";
 
 int strindex(const char source[], char pattern[])
 {
-    // TODO: write your code here
+    if (source == NULL || pattern == NULL) {
+        return -1;
+    }
+
+    size_t src_len = strlen(source);
+    size_t pat_len = strlen(pattern);
+
+    if (pat_len == 0) {
+        return 0;
+    }
+
+    if (pat_len > src_len) {
+        return -1;
+    }
+
+    for (size_t i = 0; i <= src_len - pat_len; i++) {
+        size_t j = 0;
+        while (j < pat_len && source[i + j] == pattern[j]) {
+            j++;
+        }
+        if (j == pat_len) {
+            return (int)i;
+        }
+    }
+
+    return -1;
 }
 
 // DO NOT change the code below
